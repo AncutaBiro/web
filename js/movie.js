@@ -7,24 +7,24 @@ window.Movie = {
             method: "GET",
             url: Movie.API_URL + "/movies"
         }).done(function (response) {
-            console.log(response)
-            // Movie.
+            console.log(response);
+            Movie.displayMovies(response.content);
         })
     },
 
     getMovieHtml: function (movie) {
-        return
-        `
+        return `
+        
 <div class="col-md-2 w3l-movie-gride-agile">
 <a href="single.html" class="hvr-shutter-out-horizontal"><img src="images/m7.jpg" title="album-name" alt=" " />
 <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
 </a>
 <div class="mid-1">
 <div class="w3l-movie-text">
-<h6><a href="single.html">Light B/t Oceans</a></h6>
+<h6><a href="single.html">${movie.title}</a></h6>
 </div>
 <div class="mid-2">
-<p>2016</p>
+<p>${movie.rate}</p>
 <div class="block-stars">
 <ul class="w3l-ratings">
 <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
@@ -42,13 +42,17 @@ window.Movie = {
 </div>
 </div>
         `
-
     },
-    //
-    // dispayMovies: function
-    //
-    //     addMoviesToCategory: function(movieId) {
-    // }
 
+    displayMovies: function (movies) {
+        let moviesHtml = '';
 
-}
+        movies.forEach(movie => moviesHtml += Movie.getMovieHtml(movie));
+
+        $('.browse-inner .row:first-child').html(moviesHtml);
+        $('.browse-agile-w3ls.general-w3ls.browse-inner').html(moviesHtml);
+    },
+
+};
+
+Movie.getMovies();
