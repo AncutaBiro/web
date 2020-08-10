@@ -24,16 +24,19 @@ window.Movie = {
 <h6><a href="single.html">${movie.title}</a></h6>
 </div>
 <div class="mid-2">
+<p>Movie rate &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </p>
 <p>${movie.rate}</p>
-<div class="block-stars">
-<ul class="w3l-ratings">
-<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
-<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-</ul>
-</div>
+
+<!--<div class="block-stars">-->
+<!--<ul class="w3l-ratings">-->
+<!--<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>-->
+<!--<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>-->
+<!--<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>-->
+<!--<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>-->
+<!--<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>-->
+<!--</ul>-->
+<!--</div>-->
+
 <div class="clearfix"></div>
 </div>
 </div>
@@ -49,8 +52,9 @@ window.Movie = {
 
         movies.forEach(movie => moviesHtml += Movie.getMovieHtml(movie));
 
-        $('.browse-inner .row:first-child').html(moviesHtml);
-        $('.browse-agile-w3ls.general-w3ls.browse-inner').html(moviesHtml);
+        $('.browse-inner').html(moviesHtml);
+        $('.browse-inner-come-agile-w3').html(moviesHtml);
+    // <div class="browse-inner">
     },
 
 };
