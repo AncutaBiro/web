@@ -4,7 +4,8 @@ window.Category = {
 
     getMoviesByCategory: function () {
 
-        let genre = "horror";
+        const params = new URLSearchParams(window.location.search);
+        const genre = params.get('category');
 
         $.ajax({
             method: "GET",
@@ -26,8 +27,9 @@ window.Category = {
 <h6><a href="#">${movie.title}</a></h6>
 </div>
 <div class="mid-2">
-<p> Genre </p>
-<p>${movie.rate}</p>
+<p>${movie.categories.join(", ")}</p>
+<br>
+<p>Rate:  ${movie.rate}</p>
 
 <div class="clearfix"></div>
 </div>

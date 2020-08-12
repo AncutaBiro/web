@@ -28,9 +28,9 @@ window.Movie = {
 										<tbody>
 										  <tr>
 											<td>${movie.id}</td>
-											<td class="w3-list-img"><a href="#"><img src="images/n1.jpg" alt="" /> <span>${movie.title}</span></a></td>
+											<td class="w3-list-img"><a href="#"> <img src="${Movie.API_URL}/images/${movie.poster}" alt="" /> <span>${movie.title}</span></a></td>
 											<td>${movie.description}</td>
-											<td class="w3-list-info"><a href="#">Comedy, Drama</a></td>
+											<td class="w3-list-info"><a href="#">${movie.categories.join(" ")}</a></td>
 											<td>${movie.rate}</td>
 										  </tr>
         `
@@ -44,10 +44,6 @@ window.Movie = {
         $('#table-breakpoint').html(moviesHtml);
 
     },
-
-
-
-
 
 };
 
