@@ -38,7 +38,7 @@ window.Movie = {
 											<input type="number" step=0.1 min=0 max=10 id="rate-field" placeholder="0-10"> </td>
 										
                                             <td> 
-                                            <a href="#" class="edit" data-id=${movie.id}>
+                                            <a class="edit" data-id=${movie.rate}>
                                             <input type="submit" value="Save"> </td>
 											
 										  </tr>
@@ -46,6 +46,7 @@ window.Movie = {
     },
 
     displayMovies: function (movies) {
+
         let moviesHtml = '';
 
         movies.forEach(movie => moviesHtml += Movie.getMovieHtml(movie));
@@ -54,12 +55,12 @@ window.Movie = {
 
     },
 
-    setRateInMovie: function (id, rate) {
-        const requestBody = {
-            rate: rate
+    setRateInMovie: function (id) {
+        let requestBody = {
+            rate: rate,
         };
         $.ajax({
-            url: Movie.API_URL + '?id=' + id + rate,
+            url: Movie.API_URL + '?id=' + id,
             method: 'PUT',
             contentType: 'application/json',
             data: JSON.stringify(requestBody)
@@ -69,11 +70,10 @@ window.Movie = {
     },
 
     bindEvents: function () {
-        $('#table-breakpoint').delegate('.edit', 'submit', function (event) {
+        $('#table-breakpoint').delegate('.edit', 'click', function (event) {
             event.preventDefault();
             let id = $(this).data('id');
-            let rate = $(this).data('rate');
-            Movie.setRateInMovie(id, rate);
+            Movie.setRateInMovie(id);
         });
 
 

@@ -24,7 +24,7 @@ window.Category = {
     </a>
     <div class="mid-1">
     <div class="w3l-movie-text">
-    <h6><a href="#">${movie.title}</a></h6>
+    <h6><a href="#"> ${movie.title} </a></h6>
     </div>
     <div class="mid-2">
     <p>${movie.categories.join(", ")}</p>
