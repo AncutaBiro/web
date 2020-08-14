@@ -14,7 +14,6 @@ window.Movie = {
 
     getMovieHtml: function (movie) {
         return `
-                                    </div>
 									<table id="table-breakpoint">
 										<thead>
 										  <tr>
@@ -29,9 +28,11 @@ window.Movie = {
 										
 										<tbody>
 										  <tr>
-											<td>${movie.id}</td>
-											<td class="w3-list-img"><a href="#"> <img src= "${Movie.API_URL}/images/${movie.poster}" alt="" /> <span>${movie.title}</span></a></td>
-											<td>${movie.description}</td>
+											<td> ${movie.id}</td>
+											<td class="w3-list-img"><a href="#"> <img src= "${Movie.API_URL}/images/${movie.poster}" alt="" /> 
+											<span> ${movie.title}</span></a>
+											</td>
+											<td> ${movie.description}</td>
 											<td class="w3-list-info"><a href="#">${movie.categories.join(" ")}</a></td>
 			
 											<td>${movie.rate}
@@ -42,25 +43,31 @@ window.Movie = {
                                             <input type="submit" value="Save"> </td>
 											
 										  </tr>
+										  </tbody>
+										  </table>
         `
     },
 
     displayMovies: function (movies) {
-
         let moviesHtml = '';
-
         movies.forEach(movie => moviesHtml += Movie.getMovieHtml(movie));
-
         $('#table-breakpoint').html(moviesHtml);
 
     },
 
-    setRateInMovie: function (id) {
+    setRateInMovie: function (id, movie, rateValue) {
+        let titleValue =  movie.title;
+        let descriptionValue = movie.description;
+        let posterValue = movie.poster;
+
         let requestBody = {
-            rate: rate,
+            title: titleValue,
+            description: descriptionValue,
+            poster: posterValue,
+            rate: rateValue
         };
         $.ajax({
-            url: Movie.API_URL + '?id=' + id,
+            url: Movie.API_URL + "/movies" + '?id=' + id,
             method: 'PUT',
             contentType: 'application/json',
             data: JSON.stringify(requestBody)
@@ -72,8 +79,10 @@ window.Movie = {
     bindEvents: function () {
         $('#table-breakpoint').delegate('.edit', 'click', function (event) {
             event.preventDefault();
+
             let id = $(this).data('id');
-            Movie.setRateInMovie(id);
+
+            Movie.setRateInMovie(id, movie, 8);
         });
 
 
