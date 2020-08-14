@@ -23,16 +23,11 @@ window.Category = {
     <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
     </a>
     <div class="mid-1">
-    <div class="w3l-movie-text">
-    <h6><a href="#"> ${movie.title} </a></h6>
-    </div>
-    <div class="mid-2">
-    <p>${movie.categories.join(", ")}</p>
-    <br>
-    <p>Rate:  ${movie.rate}</p>
-    
-    <div class="clearfix"></div>
-    </div>
+        <div class="w3l-movie-text">
+            <h4><a href="#"> ${movie.title} </a></h4>
+            <p>${movie.categories.join(", ")}</p>
+            <p>Rate:  ${movie.rate}</p>
+        </div>
     </div>
     </div>
         `

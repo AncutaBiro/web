@@ -1511,6 +1511,9 @@ h3.head {
 		font-size: 1.3em;
 	}
 	h3.head {
-		font-size: 1.8em;
-	}
+        font-size: 1.8em;
+    }
+}
+img {
+    max-width: 122px;
 }
