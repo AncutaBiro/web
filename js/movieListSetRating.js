@@ -22,8 +22,6 @@ window.Movie = {
         })
     },
 
-    // <td> ${movie.id} </td>
-
     getMovieHtml: function (movie) {
         return `
 				<tr>
@@ -34,15 +32,13 @@ window.Movie = {
 				<td> ${movie.description}</td>
 				<td class="w3-list-info"><a href="#"> ${movie.categories.join(" ")}</a></td>
 			
-											<td><h4>${movie.rate}</h4>
-											<input id=${movie.id + '_input'} type="number" step=0.1 min=0 max=10 id="rate-field"> 
-											</td>
-										
-                                            <td> 
-                                                <a class="edit" data-rate=${movie.rate} data-id=${movie.id}>
+											<td>
+											<input id=${movie.id + '_input'} type="number" step=0.1 min=0 max=10 id="rate-field" placeholder="0-10"> 
+											    <a class="edit" data-rate=${movie.rate} data-id=${movie.id}>
                                                     <input type="submit" value="Save">
-                                                </a> 
-                                            </td>
+                                                </a>
+											</td>							
+                                            <td><h4>${movie.rate}</h4></td>                     
 				</tr>
         `
     },
@@ -55,7 +51,6 @@ window.Movie = {
     },
 
     setRateInMovie: function (id, rateValue) {
-
         let requestBody = {
             rate: rateValue
         };
@@ -82,5 +77,5 @@ window.Movie = {
 
 }
 
-Movie.getMovies();
+Movie.getMoviesByRate();
 Movie.bindEvents();
