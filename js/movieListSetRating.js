@@ -12,25 +12,38 @@ window.Movie = {
         })
     },
 
+    getMoviesByRate: function () {
+        $.ajax({
+            method: "GET",
+            url: Movie.API_URL + "/movies/byRate"
+        }).done(function (response) {
+            console.log(response);
+            Movie.displayMovies(response.content);
+        })
+    },
+
+    // <td> ${movie.id} </td>
+
     getMovieHtml: function (movie) {
         return `
 				<tr>
-				<td> ${movie.id} </td>
+				
 				<td class="w3-list-img"><a href="#"> <img src= "${Movie.API_URL}/images/${movie.poster}" alt="" /> 
-				<span> ${movie.title}</span></a>
+				      <span> ${movie.title}</span></a>
 				</td>
 				<td> ${movie.description}</td>
 				<td class="w3-list-info"><a href="#"> ${movie.categories.join(" ")}</a></td>
 			
-											<td>${movie.rate}
-											<input id=${movie.id + '_input'} type="number" step=0.1 min=0 max=10 id="rate-field" placeholder="0-10"> </td>
+											<td><h4>${movie.rate}</h4>
+											<input id=${movie.id + '_input'} type="number" step=0.1 min=0 max=10 id="rate-field"> 
+											</td>
 										
                                             <td> 
                                                 <a class="edit" data-rate=${movie.rate} data-id=${movie.id}>
                                                     <input type="submit" value="Save">
                                                 </a> 
                                             </td>
-										  </tr>
+				</tr>
         `
     },
 
@@ -47,12 +60,12 @@ window.Movie = {
             rate: rateValue
         };
         $.ajax({
-            url: Movie.API_URL + "/movies" + '?id=' + id,
+            url: Movie.API_URL + "/movies/" + id,
             method: 'PUT',
             contentType: 'application/json',
             data: JSON.stringify(requestBody)
         }).done(function () {
-            Movie.getMovies();
+            Movie.getMoviesByRate();
         });
     },
 
@@ -61,13 +74,10 @@ window.Movie = {
             event.preventDefault();
 
             let id = $(this).data('id');
-
             let rate = $('#' + id + '_input').val();
 
             Movie.setRateInMovie(id, rate);
         });
-
-
     },
 
 }
