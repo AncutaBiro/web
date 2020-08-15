@@ -38,7 +38,7 @@ window.Movie = {
                                                     <input type="submit" value="Save">
                                                 </a>
 											</td>							
-                                            <td><h4>${movie.rate}</h4></td>                     
+                                            <td><h3>${movie.rate}</h3></td>                     
 				</tr>
         `
     },
