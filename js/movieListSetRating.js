@@ -2,16 +2,6 @@ window.Movie = {
 
     API_URL: "http://localhost:8082",
 
-    getMovies: function () {
-        $.ajax({
-            method: "GET",
-            url: Movie.API_URL + "/movies"
-        }).done(function (response) {
-            console.log(response);
-            Movie.displayMovies(response.content);
-        })
-    },
-
     getMoviesByRate: function () {
         $.ajax({
             method: "GET",
